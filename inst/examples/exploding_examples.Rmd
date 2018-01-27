@@ -1,0 +1,45 @@
+---
+title: "Exploding Boxplots"
+author: "Homer White"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r include = FALSE}
+library(bpexploder)
+library(ggplot2)
+# to remove warning about .Random.seed caused by htmlwidget::createWidgetId()
+set.seed(2828)   
+```
+
+
+## A Widget
+
+Info here.
+
+## Example
+
+Here is an example.  Click on a box!
+
+```{r}
+bpexploder()
+```
+
+
+
+(Double-click to restore the boxes.)
+
+## Regular Plot
+
+A regular plot:
+
+```{r fig.align='center'}
+ggplot(iris, aes(x = Sepal.Width, y = Petal.Length)) +
+  geom_point()
+```
+
+
+
