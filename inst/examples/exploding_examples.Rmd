@@ -22,19 +22,36 @@ Info here.
 
 ## Example
 
-Here is an example.  Click on a box!
+Here is an example using the defaults.  Click on a box!
 
 ```{r}
 bpexploder()
 ```
 
-
-
 (Double-click to restore the boxes.)
+
+##  Settings
+
+```{r}
+bpexploder(data = chickwts,
+          settings = list(
+            groupVar = "feed",
+            levels = levels(chickwts$feed),
+            levelLabels = NULL,
+            levelColors = NULL,
+            yVar = "weight",
+            yAxisLabel = "6-week weight (grams)",
+            xAxisLabel = "type of feed",
+            tipText = list(
+              weight = "weight")
+            )
+          )
+```
+
 
 ## Regular Plot
 
-A regular plot:
+For comparsion, a here's a static plot:
 
 ```{r fig.align='center'}
 ggplot(iris, aes(x = Sepal.Width, y = Petal.Length)) +

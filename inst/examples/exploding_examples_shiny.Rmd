@@ -1,0 +1,38 @@
+---
+title: "Exploding Boxplots"
+author: "Homer White"
+date: "1/27/2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(bpexploder)
+```
+
+## Usage in Shiny
+
+You can embed Shiny inputs and outputs in your document. Outputs are automatically updated whenever inputs change.  This demonstrates how a standard R plot can be made interactive by wrapping it in the Shiny `renderPlot` function. The `selectInput` and `sliderInput` functions create the input widgets used to drive the plot.
+
+```{r boxplots, echo=FALSE}
+inputPanel(
+  selectInput("yvar", label = "y-variable:",
+              choices = c("Sepal.Width", "Sepal.Length",
+                          "Petal.Width", "Petal.Length"), 
+              selected = "Sepal.Width")
+)
+
+
+
+renderBpexploder({
+  tipText <- list(input$yvar)
+  names(tipText <- input$yvar)
+  bpexploder(data = iris,
+             settings = list(
+               groupVar = "Species",
+               levels = levels(chickwts$feed),
+               yVar = input$yvar,
+               tipText = NULL))
+})
+```
