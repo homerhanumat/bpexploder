@@ -15,13 +15,6 @@ Install the package from Git Hub:
 devtools::install_github("homerhanumat/bpexploder")
 ```
 
-Set-up:
-
-``` r
-library(bpexploder)
-set.seed(5437)  # one way to avoid .Random.Seed warning from widgetId creation
-```
-
 Call the function with hello-world defaults for the `iris` data:
 
 ``` r
@@ -81,7 +74,13 @@ bpexploder(data = iris,
 Known Issues
 ------------
 
-In the Leonids theme from the `prettydoc` R Markdown package, tooltips are not visible.
+-   In the Leonids theme from the `prettydoc` R Markdown package, tooltips are not visible.
+-   When `htmlwidgets::createWidget()` makes a widget it gives it a random Id number. For some reason this can result in spurious warnings concerning the hidden varible `.Random.Seed`. To work around this, set a seed in the `setup` chunk of your R Markdown document, e.g.:
+
+    ``` r
+    library(bpexploder)
+    set.seed(5437)  # one way to avoid .Random.Seed warning from widgetId creation
+    ```
 
 Credits
 -------
