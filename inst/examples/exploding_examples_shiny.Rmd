@@ -27,12 +27,12 @@ inputPanel(
 
 renderBpexploder({
   tipText <- list(input$yvar)
-  names(tipText <- input$yvar)
+  names(tipText) <- input$yvar
   bpexploder(data = iris,
              settings = list(
                groupVar = "Species",
-               levels = levels(chickwts$feed),
+               levels = levels(iris$Species),
                yVar = input$yvar,
-               tipText = NULL))
+               tipText = tipText))
 })
 ```

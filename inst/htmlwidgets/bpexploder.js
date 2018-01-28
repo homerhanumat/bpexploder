@@ -164,6 +164,10 @@ HTMLWidgets.widget({
       var chart = exploding_boxplot(
         processedData, aesthetics
       );
+
+      // remove prior svg, in case in Shiny
+      d3.select("#" +  el.id + " svg").remove()
+
       //call chart on a div
       chart("#" + el.id);
       responsivefy(d3.select("#" + el.id + " svg"), referenceId);

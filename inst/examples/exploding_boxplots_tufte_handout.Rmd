@@ -119,6 +119,20 @@ bpexploder(data = chickwts,
           )
 ```
 
+And another (sans tips)!
+
+```{r}
+bpexploder(data = iris,
+          settings = list(
+            groupVar = "Species",
+            levels = levels(iris$Species),
+            yVar = "Petal.Length",
+            referenceId = "refnode"
+            )
+          )
+```
+
+
 
 # Sidenotes
 

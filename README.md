@@ -58,7 +58,32 @@ bpexploder(data = chickwts,
           )
 ```
 
+Sizing
+------
+
+By default the box-plot chart sizes itself as the offset-width of its grandparent node in the HTML DOM. For some layout, this might not be what you want. In that case you may direct `epexploder()` to make the width of the chart track the offset-width of an existing DOM element. For example, if paragraphs in your document have the desired width, then create an empty paragraph in your markdown like this:
+
+    <p id="reference"></p>
+
+Then call `bpexploder()` with the `referenceId` setting:
+
+``` r
+bpexploder(data = iris,
+          settings = list(
+            groupVar = "Species",
+            levels = levels(iris$Species),
+            yVar = "Petal.Length",
+            referenceId = "refnode"
+            )
+          )
+```
+
+Known Issues
+------------
+
+In the Leonids theme from the `prettydoc` R Markdown package, tooltips are not visible.
+
 Credits
 -------
 
-The JavaScript library is based on Mathieu Caule's [D3 Exploding Boxplots](https://mcaule.github.io/d3_exploding_boxplot/), which I have modified slightly and updated for D3 Version 4. The tool-tips were originally developed by [Justin Palmer](https://github.com/Caged) and were updated by [Dave Gotz](https://github.com/VACLab/d3-tip). I modified the tip-function a bit.
+The JavaScript library is based on Mathieu Caule's [D3 Exploding Boxplots](https://mcaule.github.io/d3_exploding_boxplot/), which I have modified slightly and updated for D3 Version 4. The tool-tips were created by [Justin Palmer](https://github.com/Caged), updated to D3v4 by [Dave Gotz](https://github.com/VACLab/d3-tip) and tweaked slightly by myself.
