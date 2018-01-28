@@ -6,12 +6,9 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    console.log(width, height);
-
-    // TODO: define shared variables for this instance
-    // responsivefy modified just a bit from:
+            // responsivefy modified just a bit from:
     // https://gist.github.com/soykje/ec2fc326830355104c89cd50bf1fa192
-    function responsivefy(svg) {
+    function responsivefy(svg, referenceId) {
       // get container + svg aspect ratio
       var container = d3.select(svg.node().parentNode),
         width = parseInt(svg.attr("data-width")),
@@ -32,14 +29,14 @@ HTMLWidgets.widget({
 
       // get width of container and resize svg to fit it
       function resize() {
-        var grandparent = container.node().parentNode;
-        var pWidth = container.style("width");
-        var pHeight = container.style("height");
-        var gpWidth = grandparent.offsetWidth;
-        var gpHeight = grandparent.offsetHeight;
-        //var targetWidth = parseInt(container.style("width"));
-        var contHeight = parseInt(container.style("height"));
-        var targetWidth = gpWidth;
+        var targetWidth;
+        if ( referenceId ) {
+          var measure = document.querySelector("#" + referenceId);
+          targetWidth = measure.offsetWidth;
+        } else {
+          var grandparent = container.node().parentNode;
+          targetWidth = grandparent.offsetWidth;
+        }
         svg.attr("width", targetWidth);
         var targetHeight = Math.round(targetWidth / aspect);
         svg.attr("height", targetHeight);
@@ -48,7 +45,6 @@ HTMLWidgets.widget({
         container.attr("width", targetWidth);
         container.attr("height", targetHeight);
         var firstRect = svg.select("rect");
-        console.log(firstRect);
         firstRect.attr("width", targetWidth);
         firstRect.attr("height", targetHeight);
       }
@@ -69,7 +65,9 @@ HTMLWidgets.widget({
         yVar = settings.yVar,
         yAxisLabel = settings.yAxisLabel,
         xAxisLabel = settings.xAxisLabel,
-        tipText = settings.tipText;
+        tipText = settings.tipText,
+        referenceId = settings.referenceId;
+
 
       if ( !levelLabels ) {
         levelLabels = levels;
@@ -168,7 +166,7 @@ HTMLWidgets.widget({
       );
       //call chart on a div
       chart("#" + el.id);
-      responsivefy(d3.select("#" + el.id + " svg"));
+      responsivefy(d3.select("#" + el.id + " svg"), referenceId);
       },
 
       resize: function(width, height) {

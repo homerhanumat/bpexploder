@@ -1,0 +1,62 @@
+---
+title: "Exploding Boxplots"
+author: "Homer White"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
+---
+
+```{r include = FALSE}
+library(bpexploder)
+library(ggplot2)
+# to remove warning about .Random.seed caused by htmlwidget::createWidgetId()
+set.seed(2828)   
+```
+
+
+## A Widget
+
+Info here.
+
+## Example
+
+Here is an example using the defaults.  Click on a box!
+
+```{r}
+bpexploder()
+```
+
+(Double-click to restore the boxes.)
+
+##  Settings
+
+```{r}
+bpexploder(data = chickwts,
+          settings = list(
+            groupVar = "feed",
+            levels = levels(chickwts$feed),
+            levelLabels = NULL,
+            levelColors = NULL,
+            yVar = "weight",
+            yAxisLabel = "6-week weight (grams)",
+            xAxisLabel = "type of feed",
+            tipText = list(
+              weight = "weight")
+            )
+          )
+```
+
+
+## Regular Plot
+
+For comparsion, a here's a static plot:
+
+```{r fig.align='center'}
+ggplot(iris, aes(x = Sepal.Width, y = Petal.Length)) +
+  geom_point()
+```
+
+
+

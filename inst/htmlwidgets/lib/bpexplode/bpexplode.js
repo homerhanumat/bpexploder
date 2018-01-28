@@ -45,7 +45,7 @@
     box_data.iqr = iqr;
 		box_data.max = max;
 		box_data.min = min;
-    return box_data
+    return box_data;
   };
 
   var exploding_boxplot = function(data,aes)
@@ -201,7 +201,7 @@
 						.call(init_jitter)
 						.call(draw_jitter);
 			d3.select(this).append('g')
-					.attr('class','d3-exploding-boxplot normal-points')
+					.attr('class','d3-exploding-boxplot normal-points');
 		};
 
 		var init_jitter = function(s){
@@ -213,7 +213,7 @@
           })
           .call(function(s){
             if(!s.empty()) {
-              tip(s)
+              tip(s);
             }
           })
           .on('mouseover',tip.show)
@@ -222,7 +222,7 @@
         s.attr('class','d3-exploding-boxplot point')
           .attr('r',functorkey(aes.radius))
           .attr('fill',function(d){
-            return colorscale(functorkey(aes.group)(d))
+            return colorscale(functorkey(aes.group)(d));
           });
       }
 		};
@@ -230,18 +230,18 @@
 		var draw_jitter = function(s){
 			s.attr('cx',function(d){
 				var w = xscale.bandwidth();
-				return Math.floor(Math.random() * w)
+				return Math.floor(Math.random() * w);
 			})
 			.attr('cy',function(d){
-				return yscale((functorkey(aes.y))(d))
-			})
+				return yscale((functorkey(aes.y))(d));
+			});
 		};
 
 		var create_boxplot = function(g,i) {
 			var s = d3.select(this).append('g')
 				.attr('class','d3-exploding-boxplot box')
 				.on('click',function(d){
-					explode_boxplot(this.parentNode,g)
+					explode_boxplot(this.parentNode,g);
 				})
 				.selectAll('.box')
 				.data([g])
@@ -250,7 +250,7 @@
 			s.append('rect')
 						.attr('class','d3-exploding-boxplot box')
 						.attr('fill',function(d){
-							return colorscale(functorkey(aes.group)(d.normal[0]))
+							return colorscale(functorkey(aes.group)(d.normal[0]));
 						});
 			//median line
 			s.append('line').attr('class','d3-exploding-boxplot median line');
@@ -261,7 +261,7 @@
 			//max line
 			s.append('line').attr('class','d3-exploding-boxplot max line hline');
 			//max vline
-			s.append('line').attr('class','d3-exploding-boxplot line max vline')
+			s.append('line').attr('class','d3-exploding-boxplot line max vline');
 		};
 		var draw_boxplot = function(s){
 			//box
@@ -270,7 +270,7 @@
 						.attr('width',xscale.bandwidth())
 						.attr('y',function(d){return yscale(d.quartiles[2])})
 						.attr('height',function(d){
-							return yscale(d.quartiles[0])-yscale(d.quartiles[2])
+							return yscale(d.quartiles[0])-yscale(d.quartiles[2]);
 						});
 			//median line
 			s.select('line.median')
@@ -300,7 +300,7 @@
 						.attr('x1',xscale.bandwidth()*0.5)
 						.attr('x2',xscale.bandwidth()*0.5)
 						.attr('y1',function(d){return yscale(d.quartiles[2])})
-						.attr('y2',function(d){return yscale(Math.max(d.max,d.quartiles[2]))})
+						.attr('y2',function(d){return yscale(Math.max(d.max,d.quartiles[2]))});
 		};
 		var hide_boxplot =  function(g,i)
 		{
@@ -369,7 +369,6 @@
           .call(draw_boxplot)
 		};
 		var create_tip = function(){
-		  console.log("inside create-tip");
 			tip = d3.tip().attr('class','d3-exploding-boxplot tip')
 						.direction('n')
 						.html(_tipFunction);

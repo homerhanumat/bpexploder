@@ -18,7 +18,8 @@ bpexploder <- function(data = iris,
                            Sepal.Length = "Sepal Length",
                            Sepal.Width = "Sepal Width",
                            Petal.Width = "Petal Width"
-                         )
+                         ),
+                         referenceId = NULL
                        ),
                        width = NULL, height = NULL, elementId = NULL) {
 
