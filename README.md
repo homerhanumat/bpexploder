@@ -73,7 +73,7 @@ bpexploder(data = iris,
             groupVar = "Species",
             levels = levels(iris$Species),
             yVar = "Petal.Length",
-            referenceId = "refnode"
+            referenceId = "reference"
             )
           )
 ```
