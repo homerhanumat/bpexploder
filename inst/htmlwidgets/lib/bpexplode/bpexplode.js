@@ -168,7 +168,7 @@
       container.append("text")
         .attr("x",(width-margin.left-margin.right)/2)
         .attr("dy", ".71em")
-        .attr('y',height-margin.bottom + 10)
+        .attr('y', height-margin.bottom + 12)
         .classed("axislabel", true)
         .style("text-anchor", "middle")
         .text(xlab);

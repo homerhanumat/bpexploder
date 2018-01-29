@@ -6,5 +6,5 @@ server: rpubs.com
 hostUrl: rpubs.com
 appId: https://api.rpubs.com/api/v1/document/353438/65ab0779631b4569a91c69be7b3cc671
 bundleId: https://api.rpubs.com/api/v1/document/353438/65ab0779631b4569a91c69be7b3cc671
-url: http://rpubs.com/gccsc/353438/edit
-when: 1517187728.55837
+url: http://rpubs.com/gccsc/353438
+when: 1517188037.89488
