@@ -165,6 +165,9 @@ HTMLWidgets.widget({
         processedData, aesthetics
       );
 
+      // center the char
+      d3.select("#" + el.id).style("margin", "auto");
+
       // remove prior svg, in case in Shiny
       d3.select("#" +  el.id + " svg").remove()
 

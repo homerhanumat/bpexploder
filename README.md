@@ -58,6 +58,12 @@ By default the box-plot chart sizes itself as the offset-width of its grandparen
 
     <p id="reference"></p>
 
+To set the widget-width that to a specific fraction of the element that contains the paragraph, you might try something like:
+
+    <p id="reference" style="width: 70%"></p>
+
+<p id="reference" style="width: 70%">
+</p>
 Then call `bpexploder()` with the `referenceId` setting:
 
 ``` r
@@ -66,6 +72,9 @@ bpexploder(data = iris,
             groupVar = "Species",
             levels = levels(iris$Species),
             yVar = "Petal.Length",
+            tipText = list(
+              Petal.Length = "Petal Length"
+            ),
             referenceId = "reference"
             )
           )

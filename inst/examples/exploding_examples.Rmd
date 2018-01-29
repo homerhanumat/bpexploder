@@ -91,17 +91,28 @@ bpexploder(data = survey,
 By default the box-plot chart sizes itself as the offset-width of its grandparent node in the HTML DOM.  For some layout, this might not be what you want.  In that case you may direct `epexploder()` to make the width of the chart track the offset-width of an existing DOM element.  For example, if paragraphs in your document have the desired width, then create an empty paragraph in your markdown like this:
 
 ```
-<p id="reference"></p>
+<p id="reference" style="width: 70%"></p>
 ```
+
+To set the widget-width that to a specific fraction of the element that contains the paragraph, you might try something like: 
+
+```
+<p id="reference" style="width: 70%"></p>
+```
+
+<p id="reference" style="width: 70%"></p>
 
 Then call `bpexploder()` with the `referenceId` setting:
 
-```{r eval = FALSE}
+```{r eval}
 bpexploder(data = iris,
           settings = list(
             groupVar = "Species",
             levels = levels(iris$Species),
             yVar = "Petal.Length",
+            tipText = list(
+              Petal.Length = "Petal Length"
+            ),
             referenceId = "reference"
             )
           )

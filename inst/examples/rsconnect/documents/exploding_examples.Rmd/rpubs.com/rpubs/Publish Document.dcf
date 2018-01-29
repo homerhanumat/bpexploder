@@ -1,4 +1,4 @@
-name: Document
+name: Publish Document
 title:
 username:
 account: rpubs
@@ -6,5 +6,5 @@ server: rpubs.com
 hostUrl: rpubs.com
 appId: https://api.rpubs.com/api/v1/document/353438/65ab0779631b4569a91c69be7b3cc671
 bundleId: https://api.rpubs.com/api/v1/document/353438/65ab0779631b4569a91c69be7b3cc671
-url: http://rpubs.com/publish/claim/353438/43b9651bdf524a7ea5c3828849291f77
-when: 1517187625.54136
+url: http://rpubs.com/gccsc/353438/edit
+when: 1517187728.55837
