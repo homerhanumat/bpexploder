@@ -54,7 +54,7 @@ bpexploder(data = chickwts,
 Sizing
 ------
 
-By default the box-plot chart sizes itself as the offset-width of its grandparent node in the HTML DOM. For some layout, this might not be what you want. In that case you may direct `epexploder()` to make the width of the chart track the offset-width of an existing DOM element. For example, if paragraphs in your document have the desired width, then create an empty paragraph in your markdown like this:
+By default the box-plot chart sizes itself as the offset-width of its grandparent node in the HTML DOM. For some layout this might not be what you want, in which case you may direct `epexploder()` to track the offset-width of an existing DOM element. For example, if paragraphs in your document have the desired width, then create an empty paragraph in your markdown like this:
 
     <p id="reference"></p>
 
@@ -74,13 +74,18 @@ bpexploder(data = iris,
 Known Issues
 ------------
 
--   In the Leonids theme from the `prettydoc` R Markdown package, tooltips are not visible.
+-   Tooltips are not visible in R Markdown documents rendered with the Leonids theme from the `prettydoc` package.
 -   When `htmlwidgets::createWidget()` makes a widget it gives it a random Id number. For some reason this can result in spurious warnings concerning the hidden varible `.Random.Seed`. To work around this, set a seed in the `setup` chunk of your R Markdown document, e.g.:
 
     ``` r
     library(bpexploder)
     set.seed(5437)  # one way to avoid .Random.Seed warning from widgetId creation
     ```
+
+Working Examples
+----------------
+
+For a live version of this document see [this R Pub](http://rpubs.com/gccsc/bpexploder).
 
 Credits
 -------
