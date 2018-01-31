@@ -1,6 +1,7 @@
 Package: bpexploder
 Title: Because Everybody Likes an Exploding Boxplot Now and Then
 Version: 0.1
+Date: 2018-01-30
 Authors@R: person("Homer", "White", email = "homerhanumat@gmail.com", role = c("aut", "cre"))
 Description: HTMLWidget for D3 exploding boxplots with optional tooltips.
 Depends: R (>= 3.4.3)
@@ -8,5 +9,6 @@ Imports: htmlwidgets
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/homerhanumat/bpexploder
 NeedsCompilation: no
 RoxygenNote: 6.0.1

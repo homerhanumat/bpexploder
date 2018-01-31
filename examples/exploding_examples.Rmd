@@ -1,0 +1,143 @@
+---
+title: "Exploding Boxplots"
+author: "Homer White"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r include = FALSE}
+library(bpexploder)
+# to remove warning about .Random.seed caused by htmlwidget::createWidgetId()
+set.seed(2828)   
+```
+
+
+## A Simple Widget
+
+`bpexploder` represents my first foray into Html Widgets for R; it renders an svg element showing box-plots that explode upon mouse-click into jittered individual-value plots.  You have the option to configure tool-tips for the individual points.
+
+## Installation and Usage
+
+Install the package from Git Hub:
+
+```{r eval = FALSE}
+devtools::install_github("homerhanumat/bpexploder")
+```
+
+
+
+Call the function with for the notorious `iris` data:
+
+```{r}
+bpexploder(data = iris,
+           settings = list(
+             groupVar = "Species",
+             levels = levels(iris$Species),
+             yVar = "Petal.Length",
+             tipText = list(
+               Petal.Length = "Petal Length"
+             ),
+             relativeWidth = 0.75)
+           )
+```
+
+Click to explode boxes, double-click to restore.
+
+##  Settings
+
+`bpexploder` provides modest options for customization, as illustrated in the following example:
+
+```{r}
+bpexploder(data = chickwts,
+           settings = list(
+             yVar = "weight",
+             # default NULL would make make one plot for yVar
+             groupVar = "feed",
+             levels = levels(with(chickwts,
+                                  reorder(feed, weight, median))),
+             # you could adjust the group labels ...
+             levelLabels = NULL,
+             # ... and the colors for each group:
+             levelColors = RColorBrewer::brewer.pal(6, "Set3"),
+             yAxisLabel = "6-week weight (grams)",
+             xAxisLabel = "type of feed",
+             tipText = list(
+               # as many os you like of:
+               # variableName = "desired tool-tip label"
+               # leave tipText at NULL for no tips
+               weight = "weight"),
+             # set width relative to grandarent element of svg image:
+             relativeWidth = 0.75)
+           )
+```
+
+Here is another:
+
+```{r}
+survey <- tigerstats::m111survey
+bpexploder(data = survey,
+           settings = list(
+             yVar = "fastest",
+             groupVar = "seat",
+             levelLabels = c("front", "middle", "back"),
+             yAxisLabel = "fastest speed (mph)",
+             xAxisLabel = "seating preference",
+             tipText = list(
+               sex = "sex",
+               height = "height",
+               fastest = "speed"),
+             relativeWidth = 0.75)
+           )
+```
+
+
+## Sizing
+
+By default the box-plot chart sizes itself so that its width is the the setting `relativeWidth` (default-value 1) multiplied by the offset-width of its grandparent node in the HTML DOM.  For some layouts this might give you the type of control you want.  In that case you may direct `epexploder()` to make the width of the chart track the offset-width of an existing DOM element.  For example, if paragraphs in your document have the desired width, then create an empty paragraph in your markdown like this:
+
+```
+<p id="reference"></p>
+```
+
+To set the widget-width to a specific fraction of the element that contains the paragraph, you could again use the `relativeWidth` setting, or you might try something like: 
+
+```
+<p id="reference" style="width: 70%"></p>
+```
+
+<p id="reference" style="width: 70%"></p>
+
+in either case, call `bpexploder()` with the `referenceId` setting:
+
+```{r eval}
+bpexploder(data = iris,
+           settings = list(
+             groupVar = "Species",
+             levels = levels(iris$Species),
+             yVar = "Petal.Length",
+             tipText = list(
+               Petal.Length = "Petal Length"
+             ),
+             # using <p id="reference" style="width: 70%"></p>
+             referenceId = "reference")
+           )
+```
+
+## Known Issues and Limitations
+
+* Using the Leonids theme from the `prettydoc` R Markdown package, tool-tips are not visible in Firefox or Safari.  (They do show in Chrome.)
+* The aspect-ratio of the svg-element is fixed at $\text{width}/\text{height} = 600/480$.
+* When `htmlwidgets::createWidget()` creates a widget it gives the widget a random Id number.  For some reason this can result in spurious warnings concerning the hidden variable `.Random.Seed`.  To work around this, set a seed in the `setup` chunk of your R Markdown document, e.g.:
+
+    ```{r eval = FALSE}
+    library(bpexploder)
+    set.seed(5437)  # one way to avoid .Random.Seed warning from widgetId creation
+    ```
+
+
+## Credits
+
+The JavaScript library is based on Mathieu Caule's [D3 Exploding Boxplots](https://mcaule.github.io/d3_exploding_boxplot/), which I have modified slightly and updated for D3 Version 4. The tool-tips were created by [Justin Palmer](https://github.com/Caged), updated to D3v4 by [Dave Gotz](https://github.com/VACLab/d3-tip) and tweaked slightly by myself.

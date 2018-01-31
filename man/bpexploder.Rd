@@ -2,10 +2,43 @@
 % Please edit documentation in R/bpexploder.R
 \name{bpexploder}
 \alias{bpexploder}
-\title{<Add Title>}
+\title{D# Exploding Boxplots}
 \usage{
-bpexploder(message, width = NULL, height = NULL, elementId = NULL)
+bpexploder(data, settings = list(groupVar = NULL, levels = NULL, levelLabels =
+  NULL, levelColors = NULL, yVar, yAxisLabel = NULL, xAxisLabel = NULL, tipText
+  = NULL, referenceId = NULL, relativeWidth = 1), width = NULL,
+  height = NULL, elementId = NULL)
+}
+\arguments{
+\item{data}{A data frame containing all variables involved in the plot.}
+
+\item{settings}{A list with the foloowing elements:
+\itemize{
+ \item{"groupVar"}{character vector of length one, giving name of goruping variable.
+ (Leave NULL or omit for no grouping.)}
+ \item{"levels"}{character vector of values of groupVar.  Leave NULL or omit to get
+ levels in alphabetical order.}
+ \item{"levelLabels"}{Character vector giving custom labels for levels of goruping variable.}
+ \item{"levelColors"}{Character vector giving custom colors for boxes.}
+ \item{"yVar"}{Character vector of length one, specifying the numerical variable to plot.}
+ \item{"yAxisLabel"}{Character vector of length one.}
+ \item{"xAxisLabel"}{Character vector of length one.}
+ \item{"tipText"}{List of character vectors.  Names are variables to show in the tooltips, values
+ are the labels to denote these variables.}
+ \item{"referenceId"}{Character vector; id attribute of an HTML tag.  Offset-width of this element
+ is used to set width of the svg.  Defaults to the grandparent element.
+ grandparent element.}
+ \item{"relativeWidth"}{Number between 0 and 1, svg-width is this number multplied by the
+ offset-width of the reference element.}
+}}
+
+\item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
+\code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
+string and have \code{'px'} appended.  Suggest to leave NULL.}
+
+\item{elementId}{id of element ot contain widget.  Should be left NULL.}
 }
 \description{
-<Add Description>
+Produce an svg element showing boxplots that explode upon mouse-click
+into jittered individual-value plots.
 }

@@ -83,7 +83,7 @@ bpexploder(data = iris,
 Known Issues
 ------------
 
--   Tooltips are not visible in R Markdown documents rendered with the Leonids theme from the `prettydoc` package.
+-   Using the Leonids theme from the `prettydoc` R Markdown package, tooltips are not visible in Firefox or Safari. (They do show in Chrome.)
 -   When `htmlwidgets::createWidget()` makes a widget it gives it a random Id number. For some reason this can result in spurious warnings concerning the hidden varible `.Random.Seed`. To work around this, set a seed in the `setup` chunk of your R Markdown document, e.g.:
 
     ``` r

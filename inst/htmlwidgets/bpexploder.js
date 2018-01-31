@@ -8,7 +8,7 @@ HTMLWidgets.widget({
 
             // responsivefy modified just a bit from:
     // https://gist.github.com/soykje/ec2fc326830355104c89cd50bf1fa192
-    function responsivefy(svg, referenceId) {
+    function responsivefy(svg, referenceId, relativeWidth) {
       // get container + svg aspect ratio
       var container = d3.select(svg.node().parentNode),
         width = parseInt(svg.attr("data-width")),
@@ -32,13 +32,13 @@ HTMLWidgets.widget({
         var targetWidth;
         if ( referenceId ) {
           var measure = document.querySelector("#" + referenceId);
-          targetWidth = measure.offsetWidth;
+          targetWidth = relativeWidth * measure.offsetWidth;
         } else {
           var grandparent = container.node().parentNode;
-          targetWidth = grandparent.offsetWidth;
+          targetWidth = relativeWidth * grandparent.offsetWidth;
         }
         svg.attr("width", targetWidth);
-        var targetHeight = Math.round(targetWidth / aspect);
+        var targetHeight = targetWidth / aspect;
         svg.attr("height", targetHeight);
         container.style("width", Math.round(targetWidth) + "px");
         container.style("height", Math.round(targetHeight) + "px");
@@ -66,7 +66,8 @@ HTMLWidgets.widget({
         yAxisLabel = settings.yAxisLabel,
         xAxisLabel = settings.xAxisLabel,
         tipText = settings.tipText,
-        referenceId = settings.referenceId;
+        referenceId = settings.referenceId,
+        relativeWidth = settings.relativeWidth;
 
 
       if ( !levelLabels ) {
@@ -79,6 +80,10 @@ HTMLWidgets.widget({
 
       if ( !xAxisLabel ) {
         xAxisLabel = groupVar;
+      }
+
+      if ( !relativeWidth ) {
+        relativeWidth = 1;
       }
 
       var nested = d3.nest()
@@ -173,7 +178,7 @@ HTMLWidgets.widget({
 
       //call chart on a div
       chart("#" + el.id);
-      responsivefy(d3.select("#" + el.id + " svg"), referenceId);
+      responsivefy(d3.select("#" + el.id + " svg"), referenceId, relativeWidth);
       },
 
       resize: function(width, height) {
@@ -181,7 +186,6 @@ HTMLWidgets.widget({
 
         // TODO: code to re-render the widget with a new size
         // (Cross this bridge if we come to it ...)
-        //responsivefy(d3.select("#" + el.id + " svg"));
 
 
       }
