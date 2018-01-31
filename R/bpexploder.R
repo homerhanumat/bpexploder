@@ -1,27 +1,27 @@
-#' D# Exploding Boxplots
+#' D3 Exploding Boxplots
 #'
 #' Produce an svg element showing boxplots that explode upon mouse-click
 #' into jittered individual-value plots.
 #'
 #' @param data A data frame containing all variables involved in the plot.
-#' @param settings A list with the foloowing elements:
+#' @param settings A list with the following elements:
 #' \itemize{
-#'  \item{"groupVar"}{character vector of length one, giving name of goruping variable.
+#'  \item{\code{groupVar}}{ Character vector of length one setting name of grouping variable.
 #'  (Leave NULL or omit for no grouping.)}
-#'  \item{"levels"}{character vector of values of groupVar.  Leave NULL or omit to get
+#'  \item{\code{levels}}{ Character vector of values of groupVar.  Leave NULL or omit to render
 #'  levels in alphabetical order.}
-#'  \item{"levelLabels"}{Character vector giving custom labels for levels of goruping variable.}
-#'  \item{"levelColors"}{Character vector giving custom colors for boxes.}
-#'  \item{"yVar"}{Character vector of length one, specifying the numerical variable to plot.}
-#'  \item{"yAxisLabel"}{Character vector of length one.}
-#'  \item{"xAxisLabel"}{Character vector of length one.}
-#'  \item{"tipText"}{List of character vectors.  Names are variables to show in the tooltips, values
-#'  are the labels to denote these variables.}
-#'  \item{"referenceId"}{Character vector; id attribute of an HTML tag.  Offset-width of this element
-#'  is used to set width of the svg.  Defaults to the grandparent element.
-#'  grandparent element.}
-#'  \item{"relativeWidth"}{Number between 0 and 1, svg-width is this number multplied by the
-#'  offset-width of the reference element.}
+#'  \item{\code{levelLabels}}{ Character vector setting custom labels for levels
+#'  of grouping variable.}
+#'  \item{\code{levelColors}}{ Character vector setting custom colors for boxes.}
+#'  \item{\code{yVar}}{ Character vector of length one, specifying the numerical variable to plot.}
+#'  \item{\code{yAxisLabel}}{ Character vector of length one.}
+#'  \item{\code{xAxisLabel}}{ Character vector of length one.}
+#'  \item{\code{tipText}}{ List of character vectors.  Names are variables to show in the
+#'  tooltips, values are the labels to denote these variables.}
+#'  \item{\code{referenceId}}{ Character vector; id attribute of an HTML tag.  Offset-width of
+#'  this element is used to set width of the svg.  Defaults to the grandparent element.}
+#'  \item{\code{relativeWidth}}{ Number between 0 and 1. The svg-width is this number
+#'  multplied by the offset-width of the reference element.}
 #' }
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a

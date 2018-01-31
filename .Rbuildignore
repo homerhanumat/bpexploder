@@ -1,4 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-README.Rmd
+README\.Rmd$
 examples
+^docs$
+^_pkgdown\.yml$
+README\.html$
