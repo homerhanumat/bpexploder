@@ -1,7 +1,3 @@
----
-output: gtihub_document
----
-
 Exploding Boxplots
 ================
 
