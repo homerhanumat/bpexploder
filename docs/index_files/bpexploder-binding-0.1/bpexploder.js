@@ -11,13 +11,13 @@ HTMLWidgets.widget({
     function responsivefy(svg, referenceId, relativeWidth) {
       // get container + svg aspect ratio
       var container = d3.select(svg.node().parentNode),
-        width = parseInt(svg.attr("data-width")),
-        height = parseInt(svg.attr("data-height")),
-        aspect = width / height;
+        dwidth = parseInt(svg.attr("data-width")),
+        dheight = parseInt(svg.attr("data-height")),
+        aspect = dwidth / dheight;
 
       // add viewBox and preserveAspectRatio properties,
       // and call resize so that svg resizes on inital page load
-      svg.attr("viewBox", "0 0 " + width + " " + height)
+      svg.attr("viewBox", "0 0 " + dwidth + " " + dheight)
         .attr("preserveAspectRatio", "xMinYMid")
         .call(resize);
 
@@ -25,10 +25,31 @@ HTMLWidgets.widget({
       // you need to add namespace, i.e., 'click.foo'
       // necessary if you call invoke this function for multiple svgs
       // api docs: https://github.com/mbostock/d3/wiki/Selections#on
-      d3.select(window).on("resize." + container.attr("id"), resize);
+      //d3.select(window).on("resize." + container.attr("id"), resize);
 
       // get width of container and resize svg to fit it
       function resize() {
+        var targetWidth;
+        if ( referenceId ) {
+          var measure = document.querySelector("#" + referenceId);
+          targetWidth = relativeWidth * measure.offsetWidth;
+        } else {
+          var grandparent = container.node().parentNode;
+          targetWidth = relativeWidth * grandparent.offsetWidth;
+        }
+        svg.attr("width", targetWidth);
+        var targetHeight = targetWidth / aspect;
+        svg.attr("height", targetHeight);
+        container.style("width", Math.round(targetWidth) + "px");
+        container.style("height", Math.round(targetHeight) + "px");
+        container.attr("width", targetWidth);
+        container.attr("height", targetHeight);
+        var firstRect = svg.select("rect");
+        firstRect.attr("width", targetWidth);
+        firstRect.attr("height", targetHeight);
+      }
+
+      function resize2() {
         var targetWidth;
         if ( referenceId ) {
           var measure = document.querySelector("#" + referenceId);
@@ -67,7 +88,8 @@ HTMLWidgets.widget({
         xAxisLabel = settings.xAxisLabel,
         tipText = settings.tipText,
         referenceId = settings.referenceId,
-        relativeWidth = settings.relativeWidth;
+        relativeWidth = settings.relativeWidth,
+        align = settings.align;
 
 
       if ( !levelLabels ) {
@@ -150,7 +172,10 @@ HTMLWidgets.widget({
       });
 
       var aesthetics = {
-        y: yAxisLabel
+        y: yAxisLabel,
+        referenceId: referenceId,
+        relativeWidth: relativeWidth,
+        align: align
       };
 
       if ( levelColors ) {
@@ -170,8 +195,16 @@ HTMLWidgets.widget({
         processedData, aesthetics
       );
 
-      // center the char
-      d3.select("#" + el.id).style("margin", "auto");
+      // center the chart
+      if ( align === "left" ) {
+        d3.select("#" + el.id).style("margin-left", "0");
+      }
+      if ( align === "center" ) {
+        d3.select("#" + el.id).style("margin", "auto");
+      }
+      if ( align === "right" ) {
+        d3.select("#" + el.id).style("margin-right", "0");
+      }
 
       // remove prior svg, in case in Shiny
       d3.select("#" +  el.id + " svg").remove()
@@ -182,12 +215,39 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {
+        console.log("resize widget fn being called");
         console.log("width " + width + " ; height " + height);
 
-        // TODO: code to re-render the widget with a new size
-        // (Cross this bridge if we come to it ...)
+      function resize() {
+        var svg = d3.select("#" + el.id + " svg"),
+            container = d3.select(svg.node().parentNode),
+            targetWidth,
+            referenceId = svg.attr("data-referenceId"),
+            relativeWidth = parseFloat(svg.attr("data-relativeWidth")),
+            dwidth = parseInt(svg.attr("data-width")),
+            dheight = parseInt(svg.attr("data-height")),
+            aspect = dwidth / dheight;
 
+        if ( referenceId !== "") {
+          var measure = document.querySelector("#" + referenceId);
+          targetWidth = relativeWidth * measure.offsetWidth;
+        } else {
+          var grandparent = container.node().parentNode;
+          targetWidth = relativeWidth * grandparent.offsetWidth;
+        }
+        svg.attr("width", targetWidth);
+        var targetHeight = targetWidth / aspect;
+        svg.attr("height", targetHeight);
+        container.style("width", Math.round(targetWidth) + "px");
+        container.style("height", Math.round(targetHeight) + "px");
+        container.attr("width", targetWidth);
+        container.attr("height", targetHeight);
+        var firstRect = svg.select("rect");
+        firstRect.attr("width", targetWidth);
+        firstRect.attr("height", targetHeight);
+      }
 
+        resize();
       }
 
     };

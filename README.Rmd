@@ -63,7 +63,10 @@ bpexploder(data = chickwts,
                # leave tipText at NULL for no tips
                weight = "weight"),
              # set width relative to grandarent element of svg image:
-             relativeWidth = 0.75)
+             relativeWidth = 0.75,
+             # default alignment within containing div is "center"
+             # "left" and "right" are other possible values"
+             align = "center")
            )
 ```
 
@@ -122,7 +125,8 @@ bpexploder(data = iris,
 ## Known Issues and Limitations
 
 * Using the Leonids theme from the `prettydoc` R Markdown package, tool-tips are not visible in Firefox or Safari.  (They do show in Chrome.)
-* The aspect-ratio of the svg-element is fixed at $\text{width}/\text{height} = 600/480$.
+* The aspect-ratio of the svg-element is fixed at
+    $$\frac{\text{width}}{\text{height}} = \frac{5}{4}.$$
 * When `htmlwidgets::createWidget()` creates a widget it gives the widget a random Id number.  For some reason this can result in spurious warnings concerning the hidden variable `.Random.Seed`.  To work around this, set a seed in the `setup` chunk of your R Markdown document, e.g.:
 
     ```{r eval = FALSE}

@@ -6,8 +6,8 @@
 \usage{
 bpexploder(data, settings = list(groupVar = NULL, levels = NULL, levelLabels =
   NULL, levelColors = NULL, yVar, yAxisLabel = NULL, xAxisLabel = NULL, tipText
-  = NULL, referenceId = NULL, relativeWidth = 1), width = NULL,
-  height = NULL, elementId = NULL)
+  = NULL, referenceId = NULL, relativeWidth = 1, align = "center"),
+  width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{data}{A data frame containing all variables involved in the plot.}
@@ -30,6 +30,8 @@ bpexploder(data, settings = list(groupVar = NULL, levels = NULL, levelLabels =
  this element is used to set width of the svg.  Defaults to the grandparent element.}
  \item{\code{relativeWidth}}{ Number between 0 and 1. The svg-width is this number
  multplied by the offset-width of the reference element.}
+ \item{\code{align}}{ alignment of htmlwidget within containing div. Defaults to
+ "center"; other values are "left" and "right".}
 }}
 
 \item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
