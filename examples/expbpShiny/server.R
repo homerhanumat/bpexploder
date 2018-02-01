@@ -11,6 +11,7 @@ shinyServer(function(input, output) {
                  groupVar = "Species",
                  levels = levels(iris$Species),
                  yVar = input$yvar,
+                 relativeWidth = 0.8,
                  tipText = tipText))
   })
 

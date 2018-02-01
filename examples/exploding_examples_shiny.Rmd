@@ -33,6 +33,7 @@ renderBpexploder({
                groupVar = "Species",
                levels = levels(iris$Species),
                yVar = input$yvar,
+               relativeWidth = 0.7,
                tipText = tipText))
 })
 ```

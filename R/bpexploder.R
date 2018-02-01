@@ -22,6 +22,8 @@
 #'  this element is used to set width of the svg.  Defaults to the grandparent element.}
 #'  \item{\code{relativeWidth}}{ Number between 0 and 1. The svg-width is this number
 #'  multplied by the offset-width of the reference element.}
+#'  \item{\code{align}}{ alignment of htmlwidget within containing div. Defaults to
+#'  "center"; other values are "left" and "right".}
 #' }
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
@@ -41,7 +43,8 @@ bpexploder <- function(data,
                          xAxisLabel = NULL,
                          tipText = NULL,
                          referenceId = NULL,
-                         relativeWidth = 1
+                         relativeWidth = 1,
+                         align = "center"
                        ),
                        width = NULL, height = NULL, elementId = NULL) {
 
@@ -128,9 +131,18 @@ bpexploder <- function(data,
     }
   }
 
+  if ( is.null(settings$align) ) {
+    settings$align <- "center"
+  } else {
+    if ( !(settings$align %in% c("center", "left", "right")) ) {
+      stop("alignment is center`, 'left' or 'right'")
+    }
+  }
+
   ####################################################################
   # forward options using plotInfo
   ####################################################################
+
 
   plotInfo = list(
     data = data,

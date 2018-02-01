@@ -127,8 +127,10 @@
     var chart = function(elem)
     {
       svg = d3.select(elem).append('svg')
-            .attr('data-width',width)
-            .attr('data-height',height);
+            .attr('data-width', width)
+            .attr('data-height', height)
+            .attr('data-referenceId', aes.referenceId || "")
+            .attr('data-relativeWidth', aes.relativeWidth);
 
 			svg.append('g').append('rect')
 					.attr('width',width)
