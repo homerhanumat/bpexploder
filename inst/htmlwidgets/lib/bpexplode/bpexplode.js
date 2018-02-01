@@ -53,7 +53,7 @@
     //defaults
     var iqr = 1.5;
     var height = 480;
-    var width = 600;
+    var width = 480 * aes.aspect;
     var boxpadding = 0.2;
     var margin = {top:10,bottom:40,left:50,right:10};
 		var rotateXLabels = false;

@@ -68,7 +68,8 @@ HTMLWidgets.widget({
         tipText = settings.tipText,
         referenceId = settings.referenceId,
         relativeWidth = settings.relativeWidth,
-        align = settings.align;
+        align = settings.align,
+        aspect = settings.aspect;
 
 
       if ( !levelLabels ) {
@@ -154,7 +155,8 @@ HTMLWidgets.widget({
         y: yAxisLabel,
         referenceId: referenceId,
         relativeWidth: relativeWidth,
-        align: align
+        align: align,
+        aspect: aspect
       };
 
       if ( levelColors ) {

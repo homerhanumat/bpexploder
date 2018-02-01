@@ -24,6 +24,7 @@
 #'  multplied by the offset-width of the reference element.}
 #'  \item{\code{align}}{ alignment of htmlwidget within containing div. Defaults to
 #'  "center"; other values are "left" and "right".}
+#'  \item{\code{aspect}}{ ratio of width to height.  Default is 1.25.}
 #' }
 #' @param width,height Must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
@@ -44,7 +45,8 @@ bpexploder <- function(data,
                          tipText = NULL,
                          referenceId = NULL,
                          relativeWidth = 1,
-                         align = "center"
+                         align = "center",
+                         aspect = 1.25
                        ),
                        width = NULL, height = NULL, elementId = NULL) {
 
@@ -143,6 +145,9 @@ bpexploder <- function(data,
   # forward options using plotInfo
   ####################################################################
 
+  if (is.null(settings$aspect) ) {
+    settings$aspect <- 1.25
+  }
 
   plotInfo = list(
     data = data,

@@ -25,7 +25,8 @@ bpexploder(data = iris,
              yVar = "Petal.Length",
              tipText = list(
                Petal.Length = "Petal Length"
-             ))
+             ),
+             aspect = 1.5)
            )
 ```
 
@@ -41,7 +42,8 @@ bpexploder(data = iris,
              yVar = "Petal.Length",
              tipText = list(
                Petal.Length = "Petal Length"
-             ))
+             ),
+             aspect = 1.5)
            )
 ```
 
@@ -101,7 +103,7 @@ bpexploder(data = chickwts,
                # leave tipText at NULL for no tips
                weight = "weight"),
              # set width relative to grandarent element of svg image:
-             relativeWidth = 1)
+             relativeWidth = 0.6)
            )
 ```
 
