@@ -6,8 +6,8 @@
 \usage{
 bpexploder(data, settings = list(groupVar = NULL, levels = NULL, levelLabels =
   NULL, levelColors = NULL, yVar, yAxisLabel = NULL, xAxisLabel = NULL, tipText
-  = NULL, referenceId = NULL, relativeWidth = 1, align = "center"),
-  width = NULL, height = NULL, elementId = NULL)
+  = NULL, referenceId = NULL, relativeWidth = 1, align = "center", aspect =
+  1.25), width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{data}{A data frame containing all variables involved in the plot.}
@@ -32,6 +32,7 @@ bpexploder(data, settings = list(groupVar = NULL, levels = NULL, levelLabels =
  multplied by the offset-width of the reference element.}
  \item{\code{align}}{ alignment of htmlwidget within containing div. Defaults to
  "center"; other values are "left" and "right".}
+ \item{\code{aspect}}{ ratio of width to height.  Default is 1.25.}
 }}
 
 \item{width, height}{Must be a valid CSS unit (like \code{'100\%'},

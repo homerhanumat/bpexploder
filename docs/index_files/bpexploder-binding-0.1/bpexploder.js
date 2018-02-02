@@ -6,7 +6,7 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-            // responsivefy modified just a bit from:
+    // responsivefy modified just a bit from:
     // https://gist.github.com/soykje/ec2fc326830355104c89cd50bf1fa192
     function responsivefy(svg, referenceId, relativeWidth) {
       // get container + svg aspect ratio
@@ -48,27 +48,6 @@ HTMLWidgets.widget({
         firstRect.attr("width", targetWidth);
         firstRect.attr("height", targetHeight);
       }
-
-      function resize2() {
-        var targetWidth;
-        if ( referenceId ) {
-          var measure = document.querySelector("#" + referenceId);
-          targetWidth = relativeWidth * measure.offsetWidth;
-        } else {
-          var grandparent = container.node().parentNode;
-          targetWidth = relativeWidth * grandparent.offsetWidth;
-        }
-        svg.attr("width", targetWidth);
-        var targetHeight = targetWidth / aspect;
-        svg.attr("height", targetHeight);
-        container.style("width", Math.round(targetWidth) + "px");
-        container.style("height", Math.round(targetHeight) + "px");
-        container.attr("width", targetWidth);
-        container.attr("height", targetHeight);
-        var firstRect = svg.select("rect");
-        firstRect.attr("width", targetWidth);
-        firstRect.attr("height", targetHeight);
-      }
     }
 
     return {
@@ -89,7 +68,8 @@ HTMLWidgets.widget({
         tipText = settings.tipText,
         referenceId = settings.referenceId,
         relativeWidth = settings.relativeWidth,
-        align = settings.align;
+        align = settings.align,
+        aspect = settings.aspect;
 
 
       if ( !levelLabels ) {
@@ -175,7 +155,8 @@ HTMLWidgets.widget({
         y: yAxisLabel,
         referenceId: referenceId,
         relativeWidth: relativeWidth,
-        align: align
+        align: align,
+        aspect: aspect
       };
 
       if ( levelColors ) {
@@ -215,8 +196,6 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {
-        console.log("resize widget fn being called");
-        console.log("width " + width + " ; height " + height);
 
       function resize() {
         var svg = d3.select("#" + el.id + " svg"),

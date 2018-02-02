@@ -90,8 +90,8 @@ into jittered individual-value plots.</p>
 
     <pre class="usage"><span class='fu'>bpexploder</span>(<span class='no'>data</span>, <span class='kw'>settings</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>groupVar</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>levels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>levelLabels</span> <span class='kw'>=</span>
   <span class='kw'>NULL</span>, <span class='kw'>levelColors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>yVar</span>, <span class='kw'>yAxisLabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xAxisLabel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tipText</span>
-  <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>referenceId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>relativeWidth</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>),
-  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>referenceId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>relativeWidth</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"center"</span>, <span class='kw'>aspect</span> <span class='kw'>=</span>
+  <span class='fl'>1.25</span>), <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>elementId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -121,6 +121,7 @@ into jittered individual-value plots.</p>
  multplied by the offset-width of the reference element.</p></li>
 <li><p><code>align</code> alignment of htmlwidget within containing div. Defaults to
  "center"; other values are "left" and "right".</p></li>
+<li><p><code>aspect</code> ratio of width to height.  Default is 1.25.</p></li>
 </ul></td>
     </tr>
     <tr>
