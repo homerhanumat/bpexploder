@@ -32,7 +32,12 @@ HTMLWidgets.widget({
         var targetWidth;
         if ( referenceId ) {
           var measure = document.querySelector("#" + referenceId);
-          targetWidth = relativeWidth * measure.offsetWidth;
+          var initialWidth = measure.getAttribute("data-width");
+          if ( initialWidth ) {
+            targetWidth = relativeWidth * initialWidth;
+          } else {
+            targetWidth = relativeWidth * measure.offsetWidth;
+          }
         } else {
           var grandparent = container.node().parentNode;
           targetWidth = relativeWidth * grandparent.offsetWidth;

@@ -1,0 +1,54 @@
+---
+title: "Exploding Boxplots"
+author: "Homer White"
+output:
+  slidy_presentation: default
+  ioslides_presentation:
+    widescreen: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(bpexploder)
+data(m111survey, package = "tigerstats")
+```
+
+
+
+## Page
+
+Stuff
+
+## Example
+
+<style>
+.tip {
+  z-index: 99;
+}
+</style>
+
+<p id="r2"></p>
+
+```{r echo = FALSE}
+bpexploder(m111survey,
+           settings = list(
+             yVar = "fastest",
+             groupVar = "seat",
+             levelLabels = c("front", "middle", "back"),
+             yAxisLabel = "speed (mph)",
+             tipText = list(
+               fastest = "speed",
+               sex = "sex"
+             ),
+             relativeWidth = 0.65,
+             referenceId = "r2"
+           ))
+```
+
+
+
+
+
+
+
+
